@@ -1,0 +1,13 @@
+package com.xinlan.android.basesupport.widget.spinner;
+
+import android.text.Spannable;
+import android.text.SpannableString;
+
+
+public class SimpleSpinnerTextFormatter implements SpinnerTextFormatter {
+
+    @Override
+    public Spannable format(Object item) {
+        return new SpannableString(item.toString());
+    }
+}
