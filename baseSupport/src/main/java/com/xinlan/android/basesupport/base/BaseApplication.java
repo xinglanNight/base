@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * Application基类
  */
-abstract public class BaseApplication extends MultiDexApplication {
+ public abstract class BaseApplication extends MultiDexApplication {
     private static BaseApplication baseApplication;
     /**
      * 线程名
@@ -63,7 +63,7 @@ abstract public class BaseApplication extends MultiDexApplication {
     /**
      * 在此处初始化网络请求的url
      * */
-    abstract void initApiUrl();
+    protected abstract void initApiUrl();
 
     @Override
     public void onCreate() {
