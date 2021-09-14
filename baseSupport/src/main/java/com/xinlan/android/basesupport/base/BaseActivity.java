@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -74,6 +76,7 @@ public abstract class BaseActivity<T extends ViewBinding> extends AppCompatActiv
         mContext = this;
         isFirstShow = true;
         if (a == b){
+            doBeforeSetContentView();
             setContentView(new View(mContext));
             LayoutInflater.from(mContext).inflate(R.layout.activity_matisse,null);
             getLayoutInflater();
@@ -89,6 +92,30 @@ public abstract class BaseActivity<T extends ViewBinding> extends AppCompatActiv
         addClickEvent();
     }
 
+    /**
+     * 在前setContentView设置
+     * */
+    protected void doBeforeSetContentView(){
+        if(fullScreenFlag()){
+            fullScreen();
+        }
+    }
+    /**
+     * 是否全屏显示
+     * */
+    protected boolean fullScreenFlag(){
+        return false;
+    }
+    /**
+     * 全屏显示
+     * */
+    private void fullScreen(){
+        //取消标题栏
+//        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //取消状态栏
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+    }
 
     /**
      * 获取传递的参数
